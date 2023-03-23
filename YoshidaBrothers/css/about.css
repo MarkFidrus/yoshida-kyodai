@@ -1,0 +1,43 @@
+#about
+{
+    position: relative;
+    padding: 150px 0 200px 0;
+    background-color: #181818;
+}
+
+#about .content
+{
+    margin: 0 auto;
+    width: 80%;
+}
+
+#about .content p
+{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: justify;
+    color: #fff;
+    font-size: 17px;
+    margin: 30px 0;
+    line-height: 1.5;
+}
+
+#about .content img
+{
+    float: right;
+    width: 300px;
+    height: 300px;
+    margin: 0 20px 40px 40px;
+    border: none;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px)
+{
+    #about .content img
+    {
+        float: none;
+        width: 80%;
+        height: 80%;
+        margin: 0 10% 80px 10%;
+    }
+}

@@ -1,0 +1,180 @@
+#listen-to-us
+{
+    padding: 150px 0 200px 0;
+    border: none;
+    box-shadow: 0px 10px 13px -7px #0f0f0f, inset 0px 0px 16px 8px #0f0f0f;
+    background-color: #202020;
+}
+
+#listen-to-us .title
+{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: max-content;
+    margin: 0 0 150px 0;
+    left: 0;
+    padding: 0 0 0 150px;
+    background-color: #fff;
+    animation: titleLabelSwimIn 0.8s forwards ease-out;
+}
+
+#listen-to-us .content
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#listen-to-us .content .platform
+{
+    text-align: center;
+    width: 100%; 
+}
+
+#listen-to-us .content .platform .name
+{
+    position: relative;
+    top: -50px;
+    color: #fff;
+    margin: 20px;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon:hover ~ .name
+{
+    opacity: 1;
+    top: 0;
+}
+
+#listen-to-us .content .platform .icon
+{
+    position: relative;
+    z-index: 2;
+}
+
+#listen-to-us .content .platform .icon svg
+{
+    width: 150px;
+    z-index: 1;
+}
+
+#listen-to-us .content .platform .icon.apple-music svg rect
+{
+    fill: #4d4d4d;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon.apple-music svg path
+{
+    fill: #757575;
+    transition: 0.2s;
+}
+
+
+#listen-to-us .content .platform .icon.soundcloud svg path
+{
+    fill: #757575;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon.spotify svg path.bg
+{
+    fill: #4d4d4d;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon.spotify svg path.line
+{
+    fill: #757575;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon.youtube svg .unique
+{
+    fill: #4d4d4d;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon.youtube svg .letter-fill
+{
+    fill: #757575;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon.youtube svg .letter-stroke
+{
+    stroke: #757575;
+    transition: 0.2s;
+}
+
+#listen-to-us .content .platform .icon.apple-music:hover svg rect
+{
+    fill: url(#g);
+}
+
+#listen-to-us .content .platform .icon.apple-music:hover svg path
+{
+    fill: #fff;
+}
+
+#listen-to-us .content .platform .icon.spotify:hover svg path.bg
+{
+    fill: #07c500;
+}
+
+#listen-to-us .content .platform .icon.spotify:hover svg path.line
+{
+    fill: #ffffff;
+}
+
+#listen-to-us .content .platform .icon.youtube:hover svg .unique
+{
+    fill: #eb0000;
+    transition: 0.3s;
+}
+
+#listen-to-us .content .platform .icon.youtube:hover svg .letter-fill
+{
+    fill: #ffffff;
+    transition: 0.3s;
+}
+
+#listen-to-us .content .platform .icon.youtube:hover svg .letter-stroke
+{
+    stroke: #ffffff;
+    transition: 0.3s;
+}
+
+#listen-to-us .content .platform .icon.soundcloud:hover svg path
+{
+    fill: #ff6a36;
+}
+
+@media (max-width: 768px)
+{
+    #listen-to-us .content
+    {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-width: 30%;
+        column-gap: 20%;
+        row-gap: 20%;
+    }
+}
+
+@media (max-width: 480px)
+{   
+    #listen-to-us .content
+    {
+        display: block;
+        margin: 100px 0 0 0;
+    }
+
+    #listen-to-us .content .platform
+    {
+        margin: 0 0 150px 0;
+    }
+}

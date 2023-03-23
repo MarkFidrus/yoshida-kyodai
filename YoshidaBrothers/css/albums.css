@@ -1,0 +1,208 @@
+:root
+{
+    --startLeft: 0;
+    --albumTop: 2000px;
+    --smallAlbumContentWidth: 0;
+}
+
+#albums
+{
+    padding: 150px 0 600px 0;
+    background-color: #181818;
+}
+
+#albums .content
+{
+    z-index: 1;
+}
+
+#albums .content .album
+{
+    position: absolute;
+    top: var(--albumTop);
+    left: var(--startLeft);
+    width: 400px;
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0px 1px 1px rgba(000,000,000,0.5), inset 1px 2px 0px rgba(255,255,255,0.4);
+    z-index: 1;
+}
+
+#albums .content .album:hover 
+{
+    z-index: 2;
+}
+
+#albums .content .album .cover-image
+{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+}
+
+#albums .content .album .cover-image img
+{
+    width: 100%;
+    height: 100%;
+    transition: 0.2s;
+    border-radius: 20px;
+}
+
+#albums .content .album .details
+{
+    position: relative;
+    width: 400px;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    opacity: 0;
+    transition: 0.2s;
+    z-index: 1;
+}
+
+#albums .content .album .details .header
+{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: #353535;
+    padding: 10px;
+    border-bottom: 3px solid #fff;
+}
+
+#albums .content .album .details .header h3
+{
+    color: #fff;
+    margin: 0 auto 0 0;
+}
+
+#albums .content .album .details .header button
+{
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background-color: #008cff;
+    color: #fff;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#albums .content .album .details .header button:hover
+{
+    background-color: #0171cc;
+}
+
+#albums .content .album .details .header button .icon
+{
+    margin: 0 5px 0 0;
+}
+
+#albums .content .album .details .body .tracks
+{
+    margin: 20px 5px ;
+}
+
+#albums .content .album .details .body
+{
+    max-height: 340px;
+    overflow: auto;
+}
+
+#albums .content .album .details .body::-webkit-scrollbar
+{
+    width: 8px;
+}
+
+#albums .content .album .details .body::-webkit-scrollbar-track
+{
+    background: #464646;
+}
+
+#albums .content .album .details .body::-webkit-scrollbar-thumb
+{
+    background: #747474;
+    transition: 0.2s;
+}
+
+#albums .content .album .details .body::-webkit-scrollbar-thumb:hover
+{
+    background: #fff;
+}
+
+#albums .content .album .details .body .tracks .track
+{
+    list-style: none;
+    margin: 8px 0;
+    color: #fff;
+    padding: 0 0 0 5px;
+    border: none;
+    border-bottom: 1px solid #fff;
+}
+
+#albums .content .album:hover .cover-image img
+{
+    filter: brightness(0.4);
+}
+
+#albums .content .album:hover .details
+{
+    opacity: 1;
+}
+
+@media (max-width: 1200px)
+{
+    #albums .content .album .cover-image
+    {
+        width: 300px;
+        height: 300px;
+    }
+
+    #albums .content .album
+    {
+        height: 300px;
+        width: 300px;
+    }
+
+    #albums .content .album .details
+    {
+        width: 300px;
+    }
+
+    #albums .content .album .details .body
+    {
+        max-height: 240px;
+    }
+}
+
+@media (max-width: 900px)
+{
+    #albums .content .album .cover-image
+    {
+        width: 220px;
+        height: 220px;
+    }
+
+    #albums .content .album
+    {
+        height: 220px;
+        width: 220px;
+    }
+
+    #albums .content .album .details
+    {
+        width: 220px;
+    }
+
+    #albums .content .album .details .body
+    {
+        max-height: 160px;
+    }
+}
+
+@keyframes move {
+    to { left: -500px; }
+}
