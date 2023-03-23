@@ -192,7 +192,7 @@
 
     #shows .content .show .col:nth-child(2)
     {
-        width: 770px;
+        width: 740px;
     }
 
     #shows .content .show .col .body .place
@@ -216,6 +216,7 @@
 {
     #shows .content .show
     {
+        margin: 20px auto;
         width: 470px;
     }
 
@@ -234,7 +235,7 @@
 
     #shows .content .show .col:nth-child(2)
     {
-        width: 450px;
+        width: 410px;
     }
 
     #shows .content .show .col:last-child
@@ -265,7 +266,7 @@
 
     #shows .content .show .col .body .place p
     {
-        width: 400px;
+        width: 350px;
     }
 }
 
@@ -278,11 +279,38 @@
 
     #shows .content .show .col .body .place p
     {
-        width: 280px;
+        width: 240px;
     }
 
     #shows .content .show .col:nth-child(2)
     {
-        width: 310px;
+        width: 290px;
+    }
+
+    #shows .content .show .col:last-child
+    {
+        width: 30px;
+        height: 180px;
+        min-width: 30px;
+        min-height: 180px;
+    }
+}
+
+
+@media (max-width: 360px)
+{
+    #shows .content .show
+    {
+        width: 270px;
+    }
+
+    #shows .content .show .col .body .place p
+    {
+        width: 150px;
+    }
+
+    #shows .content .show .col:nth-child(2)
+    {
+        width: 210px;
     }
 }

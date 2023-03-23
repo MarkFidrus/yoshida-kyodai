@@ -6,13 +6,14 @@
     --headerImgLeftTo: 5%;
     --headerLogoLeftFrom: 100%;
     --headerLogoLeftTo: 60%;
+    --scrollbarDisplay: 0;
 }
 
-body, html
+html,
+body
 {
-    width: 100vw;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 body::-webkit-scrollbar

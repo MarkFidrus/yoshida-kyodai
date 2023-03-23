@@ -63,6 +63,9 @@ for (const item of document.getElementsByClassName('sm-menu-list-item')) {
         document.getElementById('hoveringMenuItem').style.top = item.offsetTop + 'px';
         setSelectorSize('text');
     }
+    item.onclick = () => {
+        closeSmallMenu();
+    }
 }
 
 for (const child of document.getElementById('sm-menu-list-social-medias').children) {
@@ -91,7 +94,6 @@ function getOriginalShowsPlaceText()
         document.getElementsByClassName('place')[i].children[1].innerHTML = joinArr;
     }
 }
-
 
 function setSelectorSize(type)
 {
@@ -217,10 +219,14 @@ function setAlbumAnimations()
     let albums = document.getElementsByClassName('album');
         for (let i = 0; i < albums.length; i++)
         {
-            albums[i].style.animation = 'move '+ 15 +'s infinite linear';
+            albums[i].style.animation = 'move '+ 20 +'s infinite linear';
             if (window.innerWidth < 768)
             {
-                albums[i].style.animationDelay = (i * 6) + 's';
+                albums[i].style.animationDelay = (i * 8) + 's';
+            }
+            else if (window.innerWidth < 480)
+            {
+                albums[i].style.animationDelay = (i * 10) + 's';
             }
             else
             {
