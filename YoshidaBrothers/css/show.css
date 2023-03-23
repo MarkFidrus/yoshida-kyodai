@@ -45,6 +45,10 @@
 {
     text-transform: uppercase;
     color: #1d1d1d;
+    max-width: 900px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #shows .content .show .col .body
@@ -138,6 +142,15 @@
 
 @media (max-width: 1200px)
 {
+    #shows .content .show .col .header h3
+    {
+        max-width: 700px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
     #shows .content .show .col .body .place p
     {
         width: 400px;
@@ -167,6 +180,16 @@
         width: 880px;
     }
 
+    #shows .content .show .col .header h3
+    {
+        text-transform: uppercase;
+        color: #1d1d1d;
+        max-width: 680px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     #shows .content .show .col:nth-child(2)
     {
         width: 770px;
@@ -189,6 +212,17 @@
     {
         width: 700px;
     }
+
+    #shows .content .show .col .header h3
+    {
+        text-transform: uppercase;
+        color: #1d1d1d;
+        max-width: 500px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
 
     #shows .content .show .col:nth-child(2)
     {
@@ -219,6 +253,17 @@
         margin: 20px auto;
         width: 470px;
     }
+
+    #shows .content .show .col .header h3
+    {
+        text-transform: uppercase;
+        color: #1d1d1d;
+        max-width: 270px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
 
     #shows .content .show .col .body
     {
@@ -277,6 +322,17 @@
         width: 350px;
     }
 
+    #shows .content .show .col .header h3
+    {
+        text-transform: uppercase;
+        color: #1d1d1d;
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
     #shows .content .show .col .body .place p
     {
         width: 240px;
@@ -290,9 +346,9 @@
     #shows .content .show .col:last-child
     {
         width: 30px;
-        height: 180px;
+        height: 185px;
         min-width: 30px;
-        min-height: 180px;
+        min-height: 185px;
     }
 }
 
@@ -303,6 +359,17 @@
     {
         width: 270px;
     }
+
+    #shows .content .show .col .header h3
+    {
+        text-transform: uppercase;
+        color: #1d1d1d;
+        max-width: 70px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
 
     #shows .content .show .col .body .place p
     {
