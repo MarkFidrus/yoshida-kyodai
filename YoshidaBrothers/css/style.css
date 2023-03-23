@@ -8,7 +8,7 @@
     --headerLogoLeftTo: 60%;
 }
 
-body
+body, html
 {
     overflow-x: hidden;
 }
