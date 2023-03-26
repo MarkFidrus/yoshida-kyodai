@@ -1,11 +1,21 @@
+let checkAlbumLeftInterval = setInterval(checkAlbumLeft, 10);
+let movingAlbumAnimationInterval = setInterval(movingAlbumAnimation, 10);
+let intervalsStatus = false;
+
+let albumContent = document.getElementById('albums-content');
+
 window.onload = () => {
+    clearInterval(checkAlbumLeftInterval);
+    clearInterval(movingAlbumAnimationInterval);
     setAlbumsProperties();
+    setTitlesStartPosition();
     setTopOfHoveringSelector();
     getOriginalShowsPlaceText();
+    createAlbum();
 }
 
 window.onscroll = () => {
-
+    console.log(window.scrollY);
     let pageHeight = document.getElementById('body').scrollHeight - window.innerHeight;
 
     let onePercentage = pageHeight * 0.01;
@@ -37,6 +47,21 @@ window.onscroll = () => {
             document.getElementById('headerImgYB').style.top = (window.scrollY / 2) + 'px';
         }   
     }
+
+    if (window.scrollY >= 3800 && window.scrollY <= 5400)
+    {
+        if (!intervalsStatus)
+        {
+            startAlbumIntervals();
+        }
+        
+    }
+    else if (window.scrollY < 3800 || window.scrollY > 5400)
+    {
+        stopAlbumIntervals();
+    }
+
+    swimInContents();
 }   
 
 window.onresize = () => {
@@ -75,6 +100,73 @@ for (const child of document.getElementById('sm-menu-list-social-medias').childr
         document.getElementById('hoveringMenuItem').style.left = child.offsetLeft + 'px';
         setSelectorSize('icon');
     }
+}
+
+function swimInContents()
+{
+    if (window.scrollY >= 300 && window.scrollY <= 1100)
+    {
+        document.getElementById('about').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
+        document.getElementById('about').children[1].style.animation = 'aboutContentSwimIn 1.2s forwards ease-out';
+    }
+    else if (window.scrollY >= 2000 && window.scrollY <= 3200)
+    {
+        let shows = document.getElementsByClassName('show');
+        document.getElementById('shows').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
+        for (let i = 0; i < shows.length; i++) 
+        {
+            shows[i].style.animation = 'swimInShow 0.5s forwards ease-out';
+            shows[i].style.animationDelay = 0.1 * i + 's';
+        }
+    }
+    else if (window.scrollY >= 3600 && window.scrollY <= 3800)
+    {
+        let platforms = document.getElementsByClassName('platform');
+        document.getElementById('listen-to-us').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
+        for (let i = 0; i < platforms.length; i++)
+        {
+            platforms[i].style.animation = 'swimUpPlatform 0.6s forwards ease-out';
+            platforms[i].style.animationDelay = 0.1 * i + 's';
+        }
+    }
+    else if (window.scrollY >= 5100 && window.scrollY <= 5700)
+    {
+        document.getElementById('contact').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
+
+        let col1 = document.getElementById('content-col-1');
+        let col2 = document.getElementById('content-col-2');
+
+        col1.children[0].style.animation = 'swimInCol1Item 0.5s forwards ease-out';
+        col1.children[1].style.animation = 'swimInCol1Item 0.5s forwards ease-out';
+        col1.children[1].style.animationDelay = 0.3 + 's';
+        col1.children[2].style.animation = 'swimInCol1Item 0.5s forwards ease-out';
+        col1.children[2].style.animationDelay = 0.6 + 's';
+        col1.children[3].style.animation = 'swimInCol1Item 0.5s forwards ease-out';
+        col1.children[3].style.animationDelay = 0.9 + 's';
+
+        col2.children[0].style.animation = 'swimInCol2Item 0.5s forwards ease-out';
+        col2.children[0].style.animationDelay = 1.2 + 's';
+        col2.children[1].style.animation = 'swimInCol2Item 0.5s forwards ease-out';
+        col2.children[1].style.animationDelay = 1.5 + 's';
+        col2.children[2].style.animation = 'swimInCol2Item 0.5s forwards ease-out';
+        col2.children[2].style.animationDelay = 1.8 + 's';
+    }
+    else if (window.scrollY > 5600)
+    {
+
+    }
+}
+
+function setTitlesStartPosition()
+{
+    for (const title of document.getElementsByClassName('title')) {
+        title.style.left = -(title.clientWidth - 30) + 'px';
+    }
+}
+
+function setAlbumsProperties()
+{
+    setAlbumsTop();
 }
 
 function getOriginalShowsPlaceText()
@@ -188,25 +280,6 @@ function setSmallMenuSelector()
     }
 }
 
-function setAlbumsProperties()
-{
-    albumStartPosition();
-    setAlbumsTop();
-    setAlbumAnimations();
-}
-
-function setAlbumsTop()
-{
-    if (window.innerWidth > 1200)
-    {
-        document.documentElement.style.setProperty('--albumTop', (document.getElementById('albums').offsetTop + 350) + 'px');
-    }
-    else if (window.innerWidth <= 1200)
-    {
-        document.documentElement.style.setProperty('--albumTop', (document.getElementById('albums').offsetTop + 400) + 'px');
-    }
-}
-
 function setSmallAlbumContentWidth()
 {
     let albums = document.getElementsByClassName('album');
@@ -214,53 +287,173 @@ function setSmallAlbumContentWidth()
     console.log(albums.length);
 }
 
-function setAlbumAnimations()
+/** Album functions */
+
+let albumIndex = 0;
+
+const albumTitles = [
+    'Another Side', 
+    'Move', 
+    'Soulful',
+    'Horizon',
+    'Renaissance',
+    'Ibuki',
+    'Hishou'
+];
+
+const albumCoverImages = [
+    'img/albums/anotherside.jpg', 
+    'img/albums/move.jpg', 
+    'img/albums/soulful.jpg',
+    'img/albums/horizon.jpg',
+    'img/albums/renaissance.jpg',
+    'img/albums/ibuki.jpg',
+    'img/albums/hishou.jpg'
+];
+
+const albumTracks = [
+    ['Yume', 'Change', 'Storm', 'Moyuru (Sprouting)', 'Parallel Feelings', 'Intelligentactile 101', 'Centrifugal Focus', 'Kodo (Inside The Sun Remix)', 'Cherry Blossoms in Winter', 'Rising (Complete Mix)', 'Not Like Me', 'Le aquile non volano a stormi', 'Labyrinth ("Modern" Second Movement)', 'Saiun'],
+    ['Wakimizu', 'Koishi', 'Tenpu', 'Tsugaru Jongara Bushi', 'Ibuki See', 'Tsugaru Oharabushi', 'Tsugaru jonkarabushi kakeai kyokuhiki'],
+    ['Madrugada', 'A Hill with No Name - Namonaki Oka', 'Kuroda Bushi', 'Blooming', 'Labyrinth', 'Beyond the Deep Sea - Fukaki Umi No Kanata'],
+    ['Nemure', 'Decollage', 'Rite of Harmony', 'Genkyou', 'Fusion', 'Regalia', 'Horizon'],
+    ['Omoide No Kaze', 'Lullaby of Takeda', 'Nikata', 'Kodo', 'Sougetsu', 'Tanto Bushi', 'Oboro Zukiyo', 'Sistina', 'Indigo'],
+    ['Tsugaru Aiyabushi', 'Tsugaru Yosarebushi', 'Jonkarabushi kakeai kyokuhiki (ibuki version)', 'Tsugaru Oharabushi', 'Modern', 'Ibuki'],
+    ['Modern (Hishou version)', 'Ibuki (Hishou version)', 'Tsugaru Aiya Bushi (Hishou version)', 'Prostlude Hishou', 'Tsugaru Jongara Bushi (Hishou version)', 'Dual', 'Ringo Bushi', 'Time of Sand', 'Ajigasawa Jinku', 'Panorama', 'Tsugaru Yosare Bushi (Hishou version)', 'Prelude Hishou', 'Yasaburou Bushi', 'Kodo (Hishou versio)']
+];
+
+function createAlbum()
 {
-    let albums = document.getElementsByClassName('album');
-        for (let i = 0; i < albums.length; i++)
+    let albumsContent = document.getElementById('albums-content');
+
+    let album = document.createElement('article');
+    album.className = 'album';
+    if (albumContent.children.length > 0)
+    {
+        album.style.left = (albumContent.children[albumContent.children.length - 1].offsetLeft + 450) + 'px';
+    }
+    else
+    {
+        album.style.left = (window.innerWidth + 350) + 'px';
+    }
+
+    let coverImageDiv = document.createElement('div');
+    coverImageDiv.className = 'cover-image';
+
+    let coverImage = document.createElement('img');
+    coverImage.src = albumCoverImages[albumIndex];
+    coverImage.alt = "Yoshida-kyodai " + albumTitles[albumIndex] + " album's cover image";
+
+    coverImageDiv.appendChild(coverImage);
+
+    album.appendChild(coverImageDiv);
+
+    let details = document.createElement('div');
+    details.className = 'details';
+
+    let header = document.createElement('div');
+    header.className = 'header';
+
+    let title = document.createElement('h3');
+    title.innerHTML = albumTitles[albumIndex];
+
+    let demoButton = document.createElement('button');
+    demoButton.innerHTML = '<i class="icon fa-solid fa-play"></i> demo';
+
+    header.appendChild(title);
+    header.appendChild(demoButton);
+
+    let body = document.createElement('div');
+    body.className = 'body';
+
+    let tracks = document.createElement('ul');
+    tracks.className = 'tracks';
+
+    for (const item of albumTracks[albumIndex]) {
+        let track = document.createElement('li');
+        track.className = 'track';
+        track.innerHTML = item;
+        tracks.appendChild(track);
+    }
+    
+    body.appendChild(tracks);
+
+    details.appendChild(header);
+
+    details.appendChild(body);
+
+    album.appendChild(details);
+
+    albumsContent.appendChild(album);
+
+    albumIndex++;
+
+    if (albumIndex >= albumTitles.length)
+    {
+        albumIndex = 0;
+    }
+
+    setAlbumMouseEvents();
+}
+
+function setAlbumMouseEvents()
+{
+    for (const child of albumContent.children) {
+        child.onmouseover = () => {
+            stopAlbumIntervals();
+        }
+        child.onmouseout = () => {
+            startAlbumIntervals();
+        }
+    }
+}
+
+function movingAlbumAnimation()
+{
+    if (albumContent.children.length > 0)
+    {
+        for (const child of albumContent.children) {
+            child.style.left = (child.offsetLeft - 1) + 'px';
+        }
+    }
+}
+
+function checkAlbumLeft()
+{
+    if (albumContent.children.length > 0)
+    {
+        if (albumContent.children[albumContent.children.length - 1].getBoundingClientRect().left < (window.innerWidth + 220))
         {
-            albums[i].style.animation = 'move '+ 20 +'s infinite linear';
-            if (window.innerWidth < 768)
+            createAlbum();
+        }
+        for (let i = 0; i < albumContent.children.length; i++)
+        {
+            if (albumContent.children[i].getBoundingClientRect().left < -500)
             {
-                albums[i].style.animationDelay = (i * 8) + 's';
-            }
-            else if (window.innerWidth < 480)
-            {
-                albums[i].style.animationDelay = (i * 10) + 's';
-            }
-            else
-            {
-                albums[i].style.animationDelay = (i * 5) + 's';
+                albumContent.children[i].remove();
             }
         }
-        for (const album of albums) {
-            album.onmouseover = () => {
-                stopAllAlbumAnimation();
-            }
-            album.onmouseout = () => {
-                startAllAlbumAnimation();
-            }
-        }
-}
-
-function startAllAlbumAnimation()
-{
-    let albums = document.getElementsByClassName('album');
-    for (const album of albums) {
-        album.style.animationPlayState = 'running';
     }
 }
 
-function stopAllAlbumAnimation()
+function setAlbumsTop()
 {
-    let albums = document.getElementsByClassName('album');
-    for (const album of albums) {
-        album.style.animationPlayState = 'paused';
-    }
+    document.documentElement.style.setProperty('--albumsTop', (document.getElementById('albums').offsetTop + 400) + 'px')
 }
 
-function albumStartPosition()
+function startAlbumIntervals()
 {
-    let albumContentWidth = document.getElementById('albums').children[1].clientWidth;
-    document.documentElement.style.setProperty('--startLeft', parseInt(albumContentWidth) + 'px');
+    if (!intervalsStatus)
+    {
+        checkAlbumLeftInterval = setInterval(checkAlbumLeft, 10);
+        movingAlbumAnimationInterval = setInterval(movingAlbumAnimation, 10);
+    }
+    intervalsStatus = true;
 }
+
+function stopAlbumIntervals()
+{
+    intervalsStatus = false;
+    clearInterval(checkAlbumLeftInterval);
+    clearInterval(movingAlbumAnimationInterval);
+}
+

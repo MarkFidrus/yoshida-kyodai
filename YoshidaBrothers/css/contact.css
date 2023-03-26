@@ -21,6 +21,13 @@
     width: 25%;
 }
 
+#contact .content #content-col-1 div
+{
+    position: relative;
+    left: -400px;
+    opacity: 0;
+}
+
 #contact .content #content-col-1 div:first-child
 {
     padding: 20px;
@@ -94,6 +101,13 @@
 {
     margin: 0 10px 0 40px;
     width: 75%;
+}
+
+#contact .content #content-col-2 .field
+{
+    position: relative;
+    right: -400px;
+    opacity: 0;
 }
 
 #contact .content #content-col-2 .field input,
@@ -245,4 +259,12 @@
         position: relative;
         top: 345px;
     }
+}
+
+@keyframes swimInCol1Item {
+    to { left: 0; opacity: 1; }
+}
+
+@keyframes swimInCol2Item {
+    to { right: 0; opacity: 1; }
 }

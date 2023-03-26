@@ -7,8 +7,10 @@
 
 #about .content
 {
+    position: relative;
     margin: 0 auto;
     width: 80%;
+    opacity: 0;
 }
 
 #about .content p
@@ -40,4 +42,9 @@
         height: 80%;
         margin: 0 10% 80px 10%;
     }
+}
+
+@keyframes aboutContentSwimIn {
+    from { right: -500px; opacity: 0; }
+    to { right: 0; opacity: 1; }
 }

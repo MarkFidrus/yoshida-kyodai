@@ -244,10 +244,8 @@ header nav #menu .menu-item:hover .bottom-border
     align-items: center;
     width: max-content;
     margin: 0 0 150px 0;
-    left: 0;
     padding: 0 0 0 150px;
     background-color: #fff;
-    animation: titleLabelSwimIn 0.8s forwards ease-out;
 }
 
 #about .title h2,
@@ -292,8 +290,8 @@ header nav #menu .menu-item:hover .bottom-border
 {
     position: fixed;
     display: none;
-    right: 20px;
-    bottom: 20px;
+    right: 40px;
+    bottom: 40px;
     background-color: #0077ff;
     padding: 10px;
     border-radius: 10px;
@@ -644,27 +642,13 @@ footer div p a:hover
     to { left: var(--headerImgLeftTo); opacity: 1; }
 }
 
-
-
 /* headerLogoSwimIn */
 @keyframes headerLogoSwimIn {
     from { left: var(--headerLogoLeftFrom); opacity: 0; }
     to { left: var(--headerLogoLeftTo); opacity: 1; }
 }
 
-
 /* Contents swim in */
-@keyframes titleLabelSwimIn {
-    from { left: -300px; }
+@keyframes titleSwimIn {
     to { left: 0; }
-}
-
-@keyframes aboutImgSwimIn {
-    from { left: 150px; }
-    to { left: 0; }
-}
-
-@keyframes aboutParagraphSwimIn {
-    from { top: 100px; }
-    to { top: 0; }
 }

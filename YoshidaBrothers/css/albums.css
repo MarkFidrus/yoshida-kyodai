@@ -1,7 +1,8 @@
 :root
 {
-    --startLeft: 0;
-    --albumTop: 2000px;
+    --albumStartAt: 0;
+    --albumFinishAt: 0;
+    --albumsTop: 2000px;
     --smallAlbumContentWidth: 0;
 }
 
@@ -13,14 +14,16 @@
 
 #albums .content
 {
+    display: flex;
+    align-items: center;
     z-index: 1;
 }
 
 #albums .content .album
 {
     position: absolute;
-    top: var(--albumTop);
-    left: var(--startLeft);
+    top: var(--albumsTop);
+    left: var(--albumStartAt);
     width: 400px;
     height: 400px;
     border-radius: 20px;
@@ -201,8 +204,4 @@
     {
         max-height: 160px;
     }
-}
-
-@keyframes move {
-    to { left: -500px; }
 }

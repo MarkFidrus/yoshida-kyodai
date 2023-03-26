@@ -29,6 +29,9 @@
 
 #listen-to-us .content .platform
 {
+    position: relative;
+    top: 500px;
+    opacity: 0;
     text-align: center;
     width: 100%; 
 }
@@ -177,4 +180,8 @@
     {
         margin: 0 0 150px 0;
     }
+}
+
+@keyframes swimUpPlatform {
+    to { top: 0;  opacity: 1; }
 }
