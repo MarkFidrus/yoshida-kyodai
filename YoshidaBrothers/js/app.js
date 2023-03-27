@@ -156,11 +156,6 @@ function swimInContents()
         col2.children[2].style.animationDelay = 1.8 + 's';
     }
 }
-/**
- * beúszást beállítani az adott elemeknél, ha kisebbek.
- * window.innerWidth-et kezelni több pontban is 900>, 900, 1200, 1200<
- * 1024 alatt amikor a contact elemek elhelyezkedése megváltozik beúszás átváltása (swimInCol1/2ItemSm)
- */
 
 function setTitlesStartPosition()
 {
