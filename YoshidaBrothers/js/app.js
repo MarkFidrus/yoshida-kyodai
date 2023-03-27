@@ -104,12 +104,12 @@ for (const child of document.getElementById('sm-menu-list-social-medias').childr
 
 function swimInContents()
 {
-    if (window.scrollY >= 300 && window.scrollY <= 1100)
+    if (window.scrollY >= (document.getElementById('about').offsetTop - 200) && window.scrollY <= (document.getElementById('about').clientHeight + document.getElementById('about').offsetTop + 200))
     {
         document.getElementById('about').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
         document.getElementById('about').children[1].style.animation = 'aboutContentSwimIn 1.2s forwards ease-out';
     }
-    else if (window.scrollY >= 2000 && window.scrollY <= 3200)
+    if (window.scrollY >= (document.getElementById('shows').offsetTop - 200) && window.scrollY <= (document.getElementById('shows').clientHeight + document.getElementById('shows').offsetTop + 200))
     {
         let shows = document.getElementsByClassName('show');
         document.getElementById('shows').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
@@ -119,7 +119,7 @@ function swimInContents()
             shows[i].style.animationDelay = 0.1 * i + 's';
         }
     }
-    else if (window.scrollY >= 3600 && window.scrollY <= 3800)
+    if (window.scrollY >= (document.getElementById('listen-to-us').offsetTop - 200) && window.scrollY <= (document.getElementById('listen-to-us').clientHeight + document.getElementById('listen-to-us').offsetTop + 200))
     {
         let platforms = document.getElementsByClassName('platform');
         document.getElementById('listen-to-us').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
@@ -129,7 +129,11 @@ function swimInContents()
             platforms[i].style.animationDelay = 0.1 * i + 's';
         }
     }
-    else if (window.scrollY >= 5100 && window.scrollY <= 5700)
+    if (window.scrollY >= (document.getElementById('albums').offsetTop - 200) && window.scrollY <= (document.getElementById('albums').clientHeight + document.getElementById('albums').offsetTop + 200))
+    {
+        document.getElementById('albums').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
+    }
+    if (window.scrollY >= (document.getElementById('contact').offsetTop - 200) && window.scrollY <= (document.getElementById('contact').clientHeight + document.getElementById('contact').offsetTop + 200))
     {
         document.getElementById('contact').children[0].style.animation = 'titleSwimIn 0.8s forwards ease-out';
 
@@ -151,11 +155,12 @@ function swimInContents()
         col2.children[2].style.animation = 'swimInCol2Item 0.5s forwards ease-out';
         col2.children[2].style.animationDelay = 1.8 + 's';
     }
-    else if (window.scrollY > 5600)
-    {
-
-    }
 }
+/**
+ * beúszást beállítani az adott elemeknél, ha kisebbek.
+ * window.innerWidth-et kezelni több pontban is 900>, 900, 1200, 1200<
+ * 1024 alatt amikor a contact elemek elhelyezkedése megváltozik beúszás átváltása (swimInCol1/2ItemSm)
+ */
 
 function setTitlesStartPosition()
 {

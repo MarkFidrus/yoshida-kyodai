@@ -525,6 +525,12 @@ footer div p a:hover
         display: none;
     }
 
+    #to-top
+    {
+        right: 20px;
+        bottom: 20px;
+    }
+
     #social-medias
     {
         display: none;
